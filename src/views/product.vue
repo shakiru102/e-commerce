@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="relative">
       <v-container class="py-16 px-5">
          <v-layout row wrap>
            <v-flex sm4>
@@ -53,14 +54,14 @@
                           :callback="success"
                           :close="close"
                           >
-                          <v-btn dark large elevation="" color="#4527A0">
+                          <v-btn dark large elevation="" class="ml-3" color="#4527A0">
                             <span class="mr-3">buy now</span>   <v-icon right  color="">mdi-credit-card-outline </v-icon>
                          </v-btn>
                           </PayStack>
-                          <v-btn v-else @click="authUser" dark large elevation="" color="#4527A0">
+                          <v-btn v-else @click="authUser" dark class="ml-3" large elevation="" color="#4527A0">
                             <span class="mr-3">buy now</span>   <v-icon right  color="">mdi-credit-card-outline </v-icon>
                          </v-btn>
-                         <v-btn @click="handleCart" large  class="ml-3" elevation="" color="success">
+                         <v-btn @click="handleCart" large  class="ml-3 mt-2" elevation="" color="success">
                           <span class="mr-3">add to cart</span>   <v-icon right  color="">mdi-cart-outline</v-icon>
                          </v-btn>
                  </v-row>
@@ -86,6 +87,35 @@
            </v-flex>
          </v-layout>
        </v-container>
+  </div>
+        <div class="footer">
+         <v-container class="">
+            <v-layout row wrap>
+              <v-flex xs12 sm4>
+                <div class=" my-10 grey--text text--darken-2 text-center">
+                  <span class="title">S.A.S</span>
+                  <span class=" ml-1 font-weight-bold">stores.</span>
+                </div>
+                <div class="router_link text-center">
+                  <router-link class="mx-1 link" to="/">Home</router-link>
+                  <router-link class="mx-1 link" to="/merchant">Become A seller</router-link>
+                  <router-link class="mx-1 link" to="/about">View Products On Cart</router-link>
+                </div>
+              </v-flex>
+              <v-flex xs12 sm4 class="icons text-center">
+                 <v-icon large class=" mx-2 my-16" color="">mdi-facebook</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-twitter</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-youtube</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-linkedin</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-twitch</v-icon>
+                
+              </v-flex>
+              <v-flex xs12 sm4>
+                <div v-if="currentuser != null" class="text-center my-16">{{ currentuser.email }}</div>
+              </v-flex>
+            </v-layout>
+          </v-container>
+      </div>
   </div>
 </template>
 
@@ -144,6 +174,27 @@ computed:{ ...mapState(['currentuser']),
 <style scoped>
 .container.details{
   padding-left: 3em;
+}
+.relative{
+  position: relative;
+    z-index: 2;
+    background: white;
+
+}
+.footer{
+    min-height: 30vh;
+    position: sticky;
+    z-index: 1;
+    bottom: 0;
+    background: rgb(229, 228, 231);
+}
+.link{
+  text-decoration: none;
+  color: rgb(157, 156, 160);
+  transition: 0.3s ease-in-out all;
+}
+.link:hover{
+  color: #4527a0b2;
 }
 @media screen and (max-width: 600px ) {
   .container.details{

@@ -6,7 +6,7 @@ import store from '../store'
 
 Vue.use(VueRouter)
 const authUser = async ( to, from, next) => {
-    const res = await axios.get('/api/user')
+    const res = await axios.get('https://radiant-river-90328.herokuapp.com/api/user')
       try {
         if(res.data){
           store.commit('User', res.data)
@@ -21,7 +21,7 @@ const authUser = async ( to, from, next) => {
        }
 }
 const guest = async ( to, from, next) => {
-  const res = await axios.get('/api/user')
+  const res = await axios.get('https://radiant-river-90328.herokuapp.com/api/user')
       if(res.data){
         store.commit('User', res.data)
         
@@ -32,7 +32,7 @@ const guest = async ( to, from, next) => {
       }
 }
 const loggedIn = async ( to, from, next) => {
-  const res = await axios.get('/api/user')
+  const res = await axios.get('https://radiant-river-90328.herokuapp.com/api/user')
       if(res.data){
         store.commit('User', res.data)
         

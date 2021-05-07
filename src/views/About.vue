@@ -1,8 +1,9 @@
 <template>
   <div class="about">
+    <div class="relative">
     <div v-if="size" class="text-center my-16">
        <v-icon x-large color="">mdi-alert-circle-outline</v-icon>
-       <div class="title text-center">oops.. pls make sure you're on desktop mode to view this page.. thank you</div>
+       <div class="title text-center">oops.. sorry you can only view this page on medium size screen.. thank you</div>
       
     </div>
      <v-container v-if="!size" class="">
@@ -70,6 +71,35 @@
           </v-col>
         </v-row>
       </v-container>
+      </div>
+       <div class="footer">
+         <v-container class="">
+            <v-layout row wrap>
+              <v-flex xs12 sm4>
+                <div class=" my-10 grey--text text--darken-2 text-center">
+                  <span class="title">S.A.S</span>
+                  <span class=" ml-1 font-weight-bold">stores.</span>
+                </div>
+                <div class="router_link text-center">
+                  <router-link class="mx-1 link" to="/">Home</router-link>
+                  <router-link class="mx-1 link" to="/merchant">Become A seller</router-link>
+                  <router-link class="mx-1 link" to="/about">View Products On Cart</router-link>
+                </div>
+              </v-flex>
+              <v-flex xs12 sm4 class="icons text-center">
+                 <v-icon large class=" mx-2 my-16" color="">mdi-facebook</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-twitter</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-youtube</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-linkedin</v-icon>
+                 <v-icon large class=" mx-2 my-16" color="">mdi-twitch</v-icon>
+                
+              </v-flex>
+              <v-flex xs12 sm4>
+                <div v-if="currentuser != null" class="text-center my-16">{{ currentuser.email }}</div>
+              </v-flex>
+            </v-layout>
+          </v-container>
+      </div>
   </div>
 </template>
 <script>
@@ -151,7 +181,7 @@ export default {
 
   },
   mounted() {
-    if(screen.width < 1010){
+    if(screen.width < 1000){
       this.size = true
     }
     this.cartProducts = this.computedItems
@@ -165,6 +195,29 @@ export default {
   display: inline-block;
   border-radius: 5px;
   width: 50px;
+  border: solid 2px grey;
   
+}
+.relative{
+  position: relative;
+    z-index: 2;
+    background: white;
+    min-height: 100vh;
+
+}
+.footer{
+    min-height: 30vh;
+    position: sticky;
+    z-index: 1;
+    bottom: 0;
+    background: rgb(229, 228, 231);
+}
+.link{
+  text-decoration: none;
+  color: rgb(157, 156, 160);
+  transition: 0.3s ease-in-out all;
+}
+.link:hover{
+  color: #4527a0b2;
 }
 </style>

@@ -2,7 +2,7 @@
   <div>
     <div v-if="size" class="text-center my-16">
        <v-icon x-large color="">mdi-alert-circle-outline</v-icon>
-       <div class="title text-center">oops.. pls make sure you're on desktop mode to view this page.. thank you</div>
+       <div class="title text-center">oops.. sorry you can only view this page on medium size screen.. thank you</div>
       
     </div>
     <div v-if="!size">
@@ -60,7 +60,7 @@ export default {
   }),
 
   mounted() {
-    if(screen.width < 1010){
+    if(screen.width < 1000){
       this.size = true
     }
   },
