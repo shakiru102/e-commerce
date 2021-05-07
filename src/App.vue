@@ -1,32 +1,43 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+     <v-app-bar color="#EEEEEE" flat app clipped-left >
+       <!-- <v-spacer></v-spacer> -->
+          <v-toolbar-title class="ml-8"> S.A.S stores. </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn text href="/" color="#6A1B9A" >
+            <span class="text-capitalize grey--text text--darken-1">Home</span>
+            <v-icon></v-icon>
+          </v-btn>
+          <v-btn text href="/merchant" color="#6A1B9A" >
+            <span class="text-capitalize grey--text text--darken-1">Become A Seller</span>
+            <v-icon></v-icon>
+          </v-btn>
+          <v-btn href="/about" icon>
+            <v-icon>mdi-cart-outline</v-icon>
+            <span v-if="items != null && items.length">{{ items.length}}</span>
+          </v-btn>
+          <!-- <v-spacer></v-spacer> -->
+        </v-app-bar>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapState } from 'vuex'
+export default {
+  name: 'App',
 
-#nav {
-  padding: 30px;
-}
+ 
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  data: () => ({
+    //
+  }),
+  computed: mapState(['items']),
+  mounted() {
+    this.$store.dispatch('cartItems') 
+  },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+};
+</script>
